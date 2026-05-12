@@ -6,22 +6,22 @@ public class CajaCollisionDetection : MonoBehaviour
 {
     public CajaMovement CajaMovementScript;
 
-    // Start is called before the first frame update
+    // Cantidad de velocidad que aumenta cada vez
+    public float aumentoVelocidad = 1f;
+
     void Start()
     {
         CajaMovementScript = GetComponent<CajaMovement>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Piso"))
         {
+            // Aumentar velocidad
+            CajaMovementScript.caida += aumentoVelocidad;
+
+            // Mover la caja arriba otra vez
             CajaMovementScript.MoveBoxToRandomPosition();
         }
     }
